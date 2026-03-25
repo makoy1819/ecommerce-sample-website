@@ -2,15 +2,15 @@
 // then export to use it outside this file
 class Cart {
   cartItems;
-  localStorageKey;
+  #localStorageKey;
 
   constructor(localStorageyKey) {
-    this.localStorageKey = localStorageyKey;
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageyKey;
+    this.#loadFromStorage();
   }
 
-      loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+      #loadFromStorage() {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
         if(!this.cartItems) {
           this.cartItems = [{
@@ -49,7 +49,7 @@ class Cart {
       }
 
   saveToStorage() {
-    this.localStorage.setItem(localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
   removeFromCart(productId) {
